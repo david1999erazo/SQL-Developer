@@ -1,0 +1,21 @@
+1,'Algoritmos y Estructuras de Datos','LMiV 10:00-12:00','108D',489456522
+2,'Bases de Datos','LMiV 18:00-20:00','304C',142519864
+3,'Sistemas Operativos','MaJ 11:00-13:00','203C',489456522
+4,'Arte contemporaneo','LMiV 14:00-17:00','108D',248965255
+5,'Contabilidad y Costos','MaJ 14:00-16:00','101A',011564812
+6,'Introduccion a la Ingenieria y las TIC','MaJ 11:30-13:00','504L',011564812
+7,'Ingles I','LMiV 14:00-17:00','204C',248965255
+8,'Ingles II','MaJ 14:00-17:00','203C',619023588
+9,'Literatura I','Ma 18:00-21:00','504L',159542516
+10,'Sociedad del siglo XIX','L 9:00-12:00','101A',489221823
+11,'Calculo varias variables','MaJ 14:00-17:00','504L',090873519
+12,'Fundamentos de Derecho Constitucional','V 7:00-9:00','108D',090873519
+13,'Principios de Economia','LMiV 11:00-13:00','203C',489221823
+14,'Quimica Organica','MaJ 14:00-16:00','204C',489221823
+15,'Fundamentos de Mercadeo','LMi 7:00-9:00','304C',489221823
+16,'Probabilidad y Estadistica','L 16:00-18:00','504L',489221823
+17,'Ingenieria de Procesos','LMiV 9:00-11:00','304C',011564812
+18,'Organizaciones','MaJ 14:00-16:00','108D',356187925
+19,'Redes de Comunicaciones','LMi 9:00-11:00','203C',141582651
+20,'Logica Digital','MaJ 14:00-16:00','504L',254099823
+21,'Algebra y Funciones','MaJ 7:00-10:00','108D',489221823
