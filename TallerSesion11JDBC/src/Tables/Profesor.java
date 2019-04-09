@@ -1,3 +1,4 @@
+package Tables;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -6,20 +7,18 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class Matricula {
+public class Profesor {
 	private Connection con;
-	public Matricula() {
+	public Profesor() {
 		con =  ConexionOracle.getConnection("P09551_1_4", "P09551_1_4_20191");
 	} 
 	public void create_table() throws Exception {
 		PreparedStatement stmt = con.prepareStatement(
-	
-				"CREATE TABLE Matricula ("
-					    +"estudiante VARCHAR2(50 CHAR) NOT NULL,"
-					    +"curso NUMBER NOT NULL,"
-					    +"PRIMARY KEY (estudiante, curso),"
-					    +"FOREIGN KEY (estudiante) REFERENCES Estudiante,"
-					    +"FOREIGN KEY (curso) REFERENCES Curso)"
+				"CREATE TABLE Profesor("
+					    +"codigo NUMBER NOT NULL,"
+					    +"nombre VARCHAR2 (50 CHAR) NOT NULL,"
+					    +"departamento NUMBER NOT NULL,"
+					    +"PRIMARY KEY (codigo))"
 				
 				);
 		stmt.execute();
@@ -27,14 +26,14 @@ public class Matricula {
 	}
 
 	public void drop_table() throws Exception {
-		PreparedStatement stmt = con.prepareStatement("DROP TABLE Matricula");
+		PreparedStatement stmt = con.prepareStatement("DROP TABLE Profesor");
 		stmt.execute();
 		System.out.println("Table deleted");
 	}
 
 	public void insert() throws Exception{
 		
-		BufferedReader br = new BufferedReader(new FileReader(new File("./sources/Matriculas.txt")));
+		BufferedReader br = new BufferedReader(new FileReader(new File("./sources/Profesores.txt")));
 		String line = br.readLine();
 		
 		while(line!=null) {
@@ -46,7 +45,7 @@ public class Matricula {
 	}
 
 	public void add(String[] data) {
-		String sentence = "INSERT INTO Matricula VALUES ("+data[0]+","+data[1]+")";	
+		String sentence = "INSERT INTO Profesor VALUES ("+data[0]+","+data[1]+","+data[2]+")";	
 		PreparedStatement stmt;
 		try {
 			stmt = con.prepareStatement(sentence);
@@ -57,10 +56,11 @@ public class Matricula {
 	}
 
 	public static void main(String[] args) {
-		Matricula m = new Matricula();
+		Profesor p = new Profesor();
 		try {
-			m.create_table();
-			m.insert();
+			
+			p.create_table();
+			p.insert();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -1,3 +1,4 @@
+package Tables;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -6,33 +7,35 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class Profesor {
+public class Estudiante {
+	
 	private Connection con;
-	public Profesor() {
+	public Estudiante() {
 		con =  ConexionOracle.getConnection("P09551_1_4", "P09551_1_4_20191");
 	} 
 	public void create_table() throws Exception {
 		PreparedStatement stmt = con.prepareStatement(
-				"CREATE TABLE Profesor("
-					    +"codigo NUMBER NOT NULL,"
-					    +"nombre VARCHAR2 (50 CHAR) NOT NULL,"
-					    +"departamento NUMBER NOT NULL,"
+						"CREATE TABLE Estudiante ("
+					    +"codigo VARCHAR2(50 CHAR) NOT NULL,"
+					    +"nombre VARCHAR2(50 CHAR) NOT NULL,"
+					    +"nombre_programa VARCHAR2(50 CHAR) NOT NULL," 
+					    +"promedio_acumulado NUMBER NOT NULL,"
+					    +"fecha_nacimiento DATE NOT NULL,"
 					    +"PRIMARY KEY (codigo))"
-				
 				);
 		stmt.execute();
 		System.out.println("Table created");
 	}
 
 	public void drop_table() throws Exception {
-		PreparedStatement stmt = con.prepareStatement("DROP TABLE Profesor");
+		PreparedStatement stmt = con.prepareStatement("DROP TABLE Estudiante");
 		stmt.execute();
 		System.out.println("Table deleted");
 	}
 
 	public void insert() throws Exception{
 		
-		BufferedReader br = new BufferedReader(new FileReader(new File("./sources/Profesores.txt")));
+		BufferedReader br = new BufferedReader(new FileReader(new File("./sources/Estudiantes.txt")));
 		String line = br.readLine();
 		
 		while(line!=null) {
@@ -43,8 +46,8 @@ public class Profesor {
 		System.out.println("finish");
 	}
 
-	public void add(String[] data) {
-		String sentence = "INSERT INTO Profesor VALUES ("+data[0]+","+data[1]+","+data[2]+")";	
+	public void add(String[] data) {		
+		String sentence = "INSERT INTO Estudiante VALUES ("+data[0]+","+data[1]+","+data[2]+","+data[3]+","+data[4]+","+data[5]+")";	
 		PreparedStatement stmt;
 		try {
 			stmt = con.prepareStatement(sentence);
@@ -53,13 +56,12 @@ public class Profesor {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public static void main(String[] args) {
-		Profesor p = new Profesor();
+		Estudiante e = new Estudiante();
 		try {
-			
-			p.create_table();
-			p.insert();
+//			e.create_table();
+			e.insert();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
