@@ -10,9 +10,11 @@ import java.sql.SQLException;
 public class Estudiante {
 	
 	private Connection con;
+	
 	public Estudiante() {
 		con =  ConexionOracle.getConnection("P09551_1_4", "P09551_1_4_20191");
 	} 
+	
 	public void create_table() throws Exception {
 		PreparedStatement stmt = con.prepareStatement(
 						"CREATE TABLE Estudiante ("
