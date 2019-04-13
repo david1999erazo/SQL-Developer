@@ -11,12 +11,12 @@ import Tables.ConexionOracle;
 public class Reportes {
 	
 	
-	public void consult() throws SQLException {
+	public String consult() throws SQLException {
 		Connection con =  ConexionOracle.getConnection("P09551_1_4", "P09551_1_4_20191");
 		Statement stmt = con.createStatement();
-		
+		String report = ("************ INICIO REPORTE DE CURSOS POR ESTUDIANTE **************\n");
 		String consult = 
-		"SELECT e.codigo , e.nombre , c.nombre, c.horario, c.salon, p.nombre FROM Estudiante E "
+		"SELECT e.codigo , e.nombre x , c.nombre y, c.horario, c.salon, p.nombre z FROM Estudiante E "
 		+"INNER JOIN Matricula M "
 		+"ON e.codigo = m.estudiante "
 		+"INNER JOIN curso C "
@@ -25,26 +25,23 @@ public class Reportes {
 		+"ON c.profesor = p.codigo "
 		+"ORDER BY e.nombre";
 		
+		
+		
 		ResultSet rs = stmt.executeQuery(consult);
 		
 		while (rs.next()) {
 			String c = rs.getString("codigo");
-			String n = rs.getString("nombre");
-			String cn = rs.getString("nombre");
+			String n = rs.getString("x");
+			String cn = rs.getString("y");
 			String h = rs.getString("horario");
 			String s = rs.getString("salon");
-			String p = rs.getString("nombre");
-			System.out.println(c+","+n+","+cn+","+h+","+s+","+p);
-			}
+			String p = rs.getString("z");
+			report += (c+"\t"+n+"\t"+cn+"\t"+h+"\t"+s+"\t"+p+"\n");
+		}
 		
+		report += ("******************** FIN REPORTE ********************");
+		
+		return report;
 	}
 	
-	public static void main(String[] args) {
-		Reportes r = new Reportes();
-		try {
-			r.consult();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 }

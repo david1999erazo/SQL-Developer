@@ -9,8 +9,9 @@ import java.sql.SQLException;
 
 public class Profesor {
 	private Connection con;
-	public Profesor() {
-		con =  ConexionOracle.getConnection("P09551_1_4", "P09551_1_4_20191");
+	
+	public Profesor(Connection c) {
+		con = c;
 	} 
 	public void create_table() throws Exception {
 		PreparedStatement stmt = con.prepareStatement(
@@ -55,15 +56,4 @@ public class Profesor {
 		}
 	}
 
-	public static void main(String[] args) {
-		Profesor p = new Profesor();
-		try {
-			
-			p.create_table();
-			p.insert();
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
 }
